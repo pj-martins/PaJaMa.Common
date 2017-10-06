@@ -43,7 +43,7 @@ namespace PaJaMa.Common
 			var obj = Activator.CreateInstance<T>();
 			foreach (string column in columns)
 			{
-				var propInf = typeof(T).GetProperty(column, BindingFlags.Public | BindingFlags.Instance);
+				var propInf = typeof(T).GetProperty(column, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
 				if (propInf != null)
 				{
 					if (reader[column] == DBNull.Value)

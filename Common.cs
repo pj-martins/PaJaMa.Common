@@ -144,7 +144,7 @@ namespace PaJaMa.Common
 			return System.Text.RegularExpressions.Regex.Replace(input, "([A-Z])", " $1", System.Text.RegularExpressions.RegexOptions.Compiled).Trim();
 		}
 
-		public static byte[] StreamToBytes(Stream input, int length)
+		public static byte[] StreamToBytes(Stream input, long length)
 		{
 			byte[] buffer = new byte[length];
 			using (MemoryStream ms = new MemoryStream())
