@@ -129,5 +129,13 @@ namespace PaJaMa.Common
 					throw new ArgumentOutOfRangeException("sqlType");
 			}
 		}
+
+        public static void AddParameterWithValue(this DbCommand cmd, string parameterName, object value)
+        {
+            var parameter = cmd.CreateParameter();
+            parameter.ParameterName = parameterName;
+            parameter.Value = value;
+            cmd.Parameters.Add(parameter);
+        }
 	}
 }
