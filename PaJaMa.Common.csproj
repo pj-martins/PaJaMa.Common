@@ -207,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHelper.cs" />
+    <Compile Include="Delegates.cs" />
     <Compile Include="EMail.cs" />
     <Compile Include="Encrypter.cs" />
     <Compile Include="EnumHelper.cs" />
