@@ -244,6 +244,7 @@
     <Compile Include="SerializableDictionary.cs" />
     <Compile Include="Shredder\Shredder.cs" />
     <Compile Include="SortableBindingList.cs" />
+    <Compile Include="SettingsHelper.cs" />
     <Compile Include="VarDump.cs" />
     <Compile Include="WebCommon.cs">
       <SubType>Component</SubType>

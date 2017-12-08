@@ -32,7 +32,7 @@ namespace PaJaMa.Common
 			return obj;
 		}
 
-		public static T ToObject<T>(this DbDataReader reader) where T : class
+		public static T ToObject<T>(this DbDataReader reader, params object[] args) where T : class
 		{
 			var columns = new List<string>();
 			for (int i = 0; i < reader.FieldCount; i++)
@@ -40,7 +40,7 @@ namespace PaJaMa.Common
 				columns.Add(reader.GetName(i));
 			}
 
-			var obj = Activator.CreateInstance<T>();
+			var obj = (T)Activator.CreateInstance(typeof(T), args);
 			foreach (string column in columns)
 			{
 				var propInf = typeof(T).GetProperty(column, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
