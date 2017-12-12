@@ -10,24 +10,24 @@ namespace PaJaMa.Common
 {
 	public class SettingsHelper
 	{
-		private static string getUserSettingsPath(Type settingsType)
+		private static string getUserSettingsPath(string settingsFileName)
 		{
 			return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
 				Assembly.GetEntryAssembly().AssemblyTitle(),
-				settingsType.Name + ".xml");
+				settingsFileName + ".xml");
 		}
 
-		public static TUserSettings GetUserSettings<TUserSettings>()
+		public static TUserSettings GetUserSettings<TUserSettings>(string settingFileName = null)
 			where TUserSettings : class, new()
 		{
-			var path = getUserSettingsPath(typeof(TUserSettings));
+			var path = getUserSettingsPath(settingFileName ?? typeof(TUserSettings).Name);
 			if (!File.Exists(path)) return new TUserSettings();
-			return XmlSerialize.DeserializeObjectFromFile<TUserSettings>(getUserSettingsPath(typeof(TUserSettings)));
+			return XmlSerialize.DeserializeObjectFromFile<TUserSettings>(getUserSettingsPath(settingFileName ?? typeof(TUserSettings).Name));
 		}
 
-		public static void SaveUserSettings<TUserSettings>(TUserSettings userSettings)
+		public static void SaveUserSettings<TUserSettings>(TUserSettings userSettings, string settingFileName = null)
 		{
-			var finf = new FileInfo(getUserSettingsPath(typeof(TUserSettings)));
+			var finf = new FileInfo(getUserSettingsPath(settingFileName ?? typeof(TUserSettings).Name));
 			if (!finf.Directory.Exists)
 				finf.Directory.Create();
 			XmlSerialize.SerializeObjectToFile<TUserSettings>(userSettings, finf.FullName);

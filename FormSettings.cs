@@ -18,7 +18,7 @@ namespace PaJaMa.Common
 
 		public static void LoadSettings(Form form)
 		{
-			var formSettings = SettingsHelper.GetUserSettings<FormSettings>();
+			var formSettings = SettingsHelper.GetUserSettings<FormSettings>(form.GetType().Name);
 			if (formSettings != null)
 			{
 				form.DesktopLocation = new Point(formSettings.MainFormLeft, formSettings.MainFormTop);
@@ -47,7 +47,7 @@ namespace PaJaMa.Common
 				formSettings.MainFormWidth = form.Width;
 				formSettings.MainFormHeight = form.Height;
 			}
-			SettingsHelper.SaveUserSettings<FormSettings>(formSettings);
+			SettingsHelper.SaveUserSettings<FormSettings>(formSettings, form.GetType().Name);
 		}
 	}
 }
