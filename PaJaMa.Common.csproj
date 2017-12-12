@@ -212,6 +212,7 @@
     <Compile Include="Encrypter.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FormSettings.cs" />
     <Compile Include="GlobalHooks.cs" />
     <Compile Include="Globalization.cs" />
     <Compile Include="GlobalVariables.cs" />
