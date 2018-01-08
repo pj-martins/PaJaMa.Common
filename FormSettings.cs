@@ -21,6 +21,14 @@ namespace PaJaMa.Common
 			var formSettings = SettingsHelper.GetUserSettings<FormSettings>(form.GetType().Name);
 			if (formSettings != null)
 			{
+				var minLeft = Screen.AllScreens.Select(s => s.Bounds.X).Min();
+				var minTop = Screen.AllScreens.Select(s => s.Bounds.Y).Min();
+				if (formSettings.MainFormLeft < minLeft)
+					formSettings.MainFormLeft = minLeft;
+
+				if (formSettings.MainFormTop < minTop)
+					formSettings.MainFormTop = minTop;
+
 				form.DesktopLocation = new Point(formSettings.MainFormLeft, formSettings.MainFormTop);
 				if (formSettings.MainFormMaximized)
 					form.WindowState = FormWindowState.Maximized;
