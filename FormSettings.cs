@@ -44,6 +44,7 @@ namespace PaJaMa.Common
 
 		public static void SaveSettings(Form form)
 		{
+			if (form.WindowState == FormWindowState.Minimized) return;
 			var formSettings = SettingsHelper.GetUserSettings<FormSettings>() ?? new FormSettings();
 			formSettings.MainFormLeft = form.DesktopLocation.X;
 			formSettings.MainFormTop = form.DesktopLocation.Y;
