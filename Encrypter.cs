@@ -30,7 +30,7 @@ namespace PaJaMa.Common
         public event EventHandler Cancelled;
 
         [DebuggerNonUserCode()]
-		public byte[] EncryptDecrypt(byte[] data, byte[] Key, byte[] IV, bool decrypt)
+		public static byte[] EncryptDecrypt(byte[] data, byte[] Key, byte[] IV, bool decrypt)
 		{
 			MemoryStream ms = new MemoryStream();
 			Rijndael alg = Rijndael.Create();
@@ -50,7 +50,7 @@ namespace PaJaMa.Common
             _cancel = true;
         }
 
-		public string Encrypt(string clearText, string Password)
+		public static string Encrypt(string clearText, string Password)
 		{
 			byte[] clearBytes =
 			  System.Text.Encoding.Unicode.GetBytes(clearText);
@@ -67,7 +67,7 @@ namespace PaJaMa.Common
 		}
 
         [DebuggerNonUserCode()]
-		public string Decrypt(string cipherText, string Password)
+		public static string Decrypt(string cipherText, string Password)
 		{
 			byte[] cipherBytes = Convert.FromBase64String(cipherText);
 			PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password,

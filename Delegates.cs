@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace PaJaMa.Common
 {
-	public enum YesYesToAllNo
+	public enum DialogResult
 	{
+		None,
 		Yes,
 		YesToAll,
-		No
+		No,
+		NoToAll,
+		OK,
+		Cancel
 	}
 
 	public class DialogEventArgs
@@ -21,7 +25,7 @@ namespace PaJaMa.Common
 		}
 
 		public string Message { get; private set; }
-		public YesYesToAllNo Result { get; set; }
+		public DialogResult Result { get; set; }
 	}
 
 	public delegate void DialogEventHandler(object sender, DialogEventArgs e);
