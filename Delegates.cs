@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PaJaMa.Common
 {
-	public enum DialogResult
+	public enum PromptResult
 	{
 		None,
 		Yes,
@@ -17,16 +17,16 @@ namespace PaJaMa.Common
 		Cancel
 	}
 
-	public class DialogEventArgs
+	public class PromptEventArgs
 	{
-		public DialogEventArgs(string message)
+		public PromptEventArgs(string message)
 		{
 			Message = message;
 		}
 
 		public string Message { get; private set; }
-		public DialogResult Result { get; set; }
+		public PromptResult Result { get; set; }
 	}
 
-	public delegate void DialogEventHandler(object sender, DialogEventArgs e);
+	public delegate void PromptEventHandler(object sender, PromptEventArgs e);
 }
