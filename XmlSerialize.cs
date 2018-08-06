@@ -40,7 +40,14 @@ namespace PaJaMa.Common
 		{
 			FileInfo inf = new FileInfo(path);
 			if (!inf.Exists) return default(T);
-			return DeserializeObject<T>(File.ReadAllText(path));
+			try
+			{
+				return DeserializeObject<T>(File.ReadAllText(path));
+			}
+			catch
+			{
+				return default(T);
+			}
 		}
 
 		public static T DeserializeObject<T>(String xml)
