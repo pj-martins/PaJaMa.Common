@@ -22,7 +22,8 @@ namespace PaJaMa.Common
 		{
 			var path = getUserSettingsPath(settingFileName ?? typeof(TUserSettings).Name);
 			if (!File.Exists(path)) return new TUserSettings();
-			return XmlSerialize.DeserializeObjectFromFile<TUserSettings>(getUserSettingsPath(settingFileName ?? typeof(TUserSettings).Name));
+			var settings = XmlSerialize.DeserializeObjectFromFile<TUserSettings>(getUserSettingsPath(settingFileName ?? typeof(TUserSettings).Name));
+			return settings ?? new TUserSettings();
 		}
 
 		public static void SaveUserSettings<TUserSettings>(TUserSettings userSettings, string settingFileName = null)

@@ -193,5 +193,29 @@ namespace PaJaMa.Common
 			stream.Read(bytes, 0, bytes.Length);
 			return encoding.GetString(bytes);
 		}
+
+		public static T DictionaryToObject<T>(this Dictionary<string, object> dictionary, params object[] args) where T : class
+		{
+			var obj = (T)Activator.CreateInstance(typeof(T), args);
+			foreach (var kvp in dictionary)
+			{
+				var propInf = typeof(T).GetProperty(kvp.Key, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
+				if (propInf != null)
+				{
+					if (kvp.Value == null)
+						propInf.SetValue(obj, null, null);
+					else if (propInf.PropertyType.IsEnum && kvp.Value is string)
+					{
+						var val = Enum.Parse(propInf.PropertyType, kvp.Value.ToString(), true);
+						propInf.SetValue(obj, val, null);
+					}
+					else
+						propInf.SetValue(obj, kvp.Value, null);
+				}
+			}
+			return obj;
+		}
+
+
 	}
 }
