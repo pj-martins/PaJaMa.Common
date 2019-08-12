@@ -202,7 +202,7 @@ namespace PaJaMa.Common
 				var propInf = typeof(T).GetProperty(kvp.Key, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
 				if (propInf != null)
 				{
-					if (kvp.Value == null)
+					if (kvp.Value == null || kvp.Value is DBNull)
 						propInf.SetValue(obj, null, null);
 					else if (propInf.PropertyType.IsEnum && kvp.Value is string)
 					{

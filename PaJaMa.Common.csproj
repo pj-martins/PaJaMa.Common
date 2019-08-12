@@ -177,9 +177,11 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHelper.cs" />
+    <Compile Include="DebounceDispatcher.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="EMail.cs" />
     <Compile Include="Encrypter.cs" />
