@@ -30,5 +30,11 @@ namespace PaJaMa.Common
 				return attr.DisplayString;
 			return enumVal.ToString();
 		}
+
+		public static TAttribute GetAttribute<TAttribute>(object enumVal) where TAttribute : Attribute
+		{
+			FieldInfo fi = enumVal.GetType().GetField(enumVal.ToString());
+			return fi.GetCustomAttributes(typeof(TAttribute), false).FirstOrDefault() as TAttribute;
+		}
 	}
 }
