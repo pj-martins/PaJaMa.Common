@@ -7,13 +7,10 @@ using System.Net;
 using System.IO;
 using System.Management;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using System.ComponentModel;
-using Microsoft.Win32;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Reflection;
-using System.Threading;
 
 namespace PaJaMa.Common
 {
@@ -246,38 +243,38 @@ namespace PaJaMa.Common
 			Hibernate = 15
 		}
 
-		public static void Shutdown(ShutdownType type)
-		{
-			switch (type)
-			{
-				case ShutdownType.Lock:
-					LockWorkStation();
-					break;
-				case ShutdownType.Standby:
-					Application.SetSuspendState(PowerState.Suspend, true, true);
-					break;
-				case ShutdownType.Hibernate:
-					Application.SetSuspendState(PowerState.Hibernate, true, true);
-					break;
-				default:
-					ManagementBaseObject mbo = null;
-					ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
-					mcWin32.Get();
+		//public static void Shutdown(ShutdownType type)
+		//{
+		//	switch (type)
+		//	{
+		//		case ShutdownType.Lock:
+		//			LockWorkStation();
+		//			break;
+		//		case ShutdownType.Standby:
+		//			Application.SetSuspendState(PowerState.Suspend, true, true);
+		//			break;
+		//		case ShutdownType.Hibernate:
+		//			Application.SetSuspendState(PowerState.Hibernate, true, true);
+		//			break;
+		//		default:
+		//			ManagementBaseObject mbo = null;
+		//			ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
+		//			mcWin32.Get();
 
-					mcWin32.Scope.Options.EnablePrivileges = true;
-					ManagementBaseObject mboParams =
-						mcWin32.GetMethodParameters("Win32Shutdown");
+		//			mcWin32.Scope.Options.EnablePrivileges = true;
+		//			ManagementBaseObject mboParams =
+		//				mcWin32.GetMethodParameters("Win32Shutdown");
 
-					mboParams["Flags"] = ((int)type).ToString();
-					mboParams["Reserved"] = "0";
-					foreach (ManagementObject manObj in mcWin32.GetInstances())
-					{
-						mbo = manObj.InvokeMethod("Win32Shutdown",
-							mboParams, null);
-					}
-					break;
-			}
-		}
+		//			mboParams["Flags"] = ((int)type).ToString();
+		//			mboParams["Reserved"] = "0";
+		//			foreach (ManagementObject manObj in mcWin32.GetInstances())
+		//			{
+		//				mbo = manObj.InvokeMethod("Win32Shutdown",
+		//					mboParams, null);
+		//			}
+		//			break;
+		//	}
+		//}
 		#endregion
 		public static bool IsEmpty(object input)
 		{
