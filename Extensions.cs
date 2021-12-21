@@ -215,7 +215,5 @@ namespace PaJaMa.Common
 			}
 			return obj;
 		}
-
-
 	}
 }
