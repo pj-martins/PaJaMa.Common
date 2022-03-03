@@ -221,6 +221,7 @@
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Attributes.cs" />
     <Compile Include="InputState.cs" />
+    <Compile Include="JsonSerialize.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Message.cs" />
