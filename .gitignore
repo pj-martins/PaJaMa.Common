@@ -1,2 +1,4 @@
 obj/
 bin/
+.vs/
+PaJaMa.Common.csproj.user
